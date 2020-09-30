@@ -1,3 +1,5 @@
-async function app() {
-    await fetch('test')
-}
+import {HeaderComponent} from './components/header.component'
+
+const header = new HeaderComponent('header')
+
+console.log(header)
