@@ -1,1 +1,1 @@
-console.log('strted')
+console.log('started')
