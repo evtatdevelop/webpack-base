@@ -1,0 +1,21 @@
+{
+  "name": "webpack-base",
+  "version": "1.0.0",
+  "description": "webpack started template",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
+  },
+  "keywords": [
+    "webpack",
+    "babel",
+    "sass"
+  ],
+  "author": "Evgenii Tatarenko",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
+  }
+}
