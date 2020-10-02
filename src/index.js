@@ -1,3 +1,2 @@
-async function app() {
-    await fetch('test')
-}
+import './css/main.css'
+import './scss/main.scss'
