@@ -1,5 +1,5 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
 module.exports = {
@@ -39,25 +39,74 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader, 
-          'css-loader'
-        ],
-      },
-      {
-        test: /\.scss$/,
-        use: [
-          'style-loader',
-          MiniCssExtractPlugin.loader, 
+        use: [ 
+          { loader: 'style-loader' },
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: { sourceMap: true }
           },
           {
-            loader: 'sass-loader',
-            options: { sourceMap: true }            
+            loader: 'postcss-loader',
+            options: { 
+              sourceMap: true, 
+              postcssOptions: {
+                plugins: [
+                  [ 'autoprefixer' ],
+                  [ 'css-mqpacker' ],
+                  [ 'cssnano',
+                    {
+                      preset: [
+                        'default', {
+                            discardComments: {
+                                removeAll: true,
+                            }
+                        }
+                      ]
+                    }
+                  ]
+                ],
+              }
+            }
           }
-        ],
+        ]
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          { loader: 'style-loader' }, 
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: { sourceMap: true }
+          },
+          {
+            loader: 'postcss-loader',
+            options: { 
+              sourceMap: true, 
+              postcssOptions: {
+                plugins: [
+                  [ 'autoprefixer' ],
+                  [ 'css-mqpacker' ],
+                  [ 'cssnano',
+                    {
+                      preset: [
+                        'default', {
+                            discardComments: { removeAll: true, }
+                        }
+                      ]
+                    }
+                  ]
+                ],
+              }
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: { sourceMap: true }
+          },
+
+        ]
       }
 
     ]
