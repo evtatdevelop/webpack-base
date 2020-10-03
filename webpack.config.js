@@ -1,4 +1,5 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
 module.exports = {
@@ -16,6 +17,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './src/index.html'
+    }),
+    new MiniCssExtractPlugin({
+      filename: "style.css"
     })
   ],
   resolve: {
@@ -32,7 +36,73 @@ module.exports = {
             presets: ['@babel/preset-env']
           }
         }
+      },
+      {
+        test: /\.css$/,
+        use: [ 
+          { loader: 'style-loader' },
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: { sourceMap: true }
+          },
+          {
+            loader: 'postcss-loader',
+            options: { 
+              sourceMap: true, 
+              postcssOptions: {
+                plugins: [
+                  [ 'autoprefixer' ],
+                  [ 'cssnano',
+                    {
+                      preset: [
+                        'default', 
+                        { discardComments: { removeAll: true, } }
+                      ]
+                    }
+                  ]
+                ],
+              }
+            }
+          }
+        ]
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          { loader: 'style-loader' }, 
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: { sourceMap: true }
+          },
+          {
+            loader: 'postcss-loader',
+            options: { 
+              sourceMap: true, 
+              postcssOptions: {
+                plugins: [
+                  [ 'autoprefixer' ],
+                  [ 'cssnano',
+                    {
+                      preset: [
+                        'default', 
+                        { discardComments: { removeAll: true, } }
+                      ]
+                    }
+                  ]
+                ],
+              }
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: { sourceMap: true }
+          },
+
+        ]
       }
+
     ]
   }
 };
