@@ -1,20 +1,33 @@
 @import "params";
 
-@mixin clear {
-  padding: 0;
-  margin: 0;
-}
-
-@mixin clear-list {
-  @include clear;
-  list-style: none;
-}
-
 @mixin flex-center($dir: column) {
   display: flex;
   flex-direction: $dir;
   justify-content: center;
   align-items: center;
+}
+
+
+
+// px to rem
+@function rem($pixels, $context: $mainFontSize) {
+  @if (unitless($pixels)) { $pixels: $pixels * 1px; }
+  @if (unitless($context)) { $context: $context * 1px; }
+  @return $pixels / $context * 1rem;
+}
+
+// size to one line
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+// placeholder helper
+@mixin placeholder {
+  ::-webkit-input-placeholder { @content; }
+  :-moz-placeholder { @content; }
+  ::-moz-placeholder { @content; }
+  :-ms-input-placeholder { @content; }
 }
 
 // @mixin app-color($color: $yellow) {

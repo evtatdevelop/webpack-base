@@ -53,15 +53,11 @@ module.exports = {
               postcssOptions: {
                 plugins: [
                   [ 'autoprefixer' ],
-                  [ 'css-mqpacker' ],
                   [ 'cssnano',
                     {
                       preset: [
-                        'default', {
-                            discardComments: {
-                                removeAll: true,
-                            }
-                        }
+                        'default', 
+                        { discardComments: { removeAll: true, } }
                       ]
                     }
                   ]
@@ -87,13 +83,11 @@ module.exports = {
               postcssOptions: {
                 plugins: [
                   [ 'autoprefixer' ],
-                  [ 'css-mqpacker' ],
                   [ 'cssnano',
                     {
                       preset: [
-                        'default', {
-                            discardComments: { removeAll: true, }
-                        }
+                        'default', 
+                        { discardComments: { removeAll: true, } }
                       ]
                     }
                   ]

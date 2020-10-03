@@ -1,39 +1,111 @@
 @import "partials/params";
 @import "partials/mixins";
+@import "partials/reset";
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 
-html, body {
-    @include clear;
-    width: 100%;
-    font-family: 'Roboto', sans-serif;
-    background-color: $main-bg;
-    background-size: cover;
-    color: $main-color;
+html {
+  line-height: $mainLineHeight;
+  font-size: $mainFontSize;
+  color: $mainFontColor;
+  height: 100%;
+  @media screen and (max-width: $desktopWidth) {
+    font-size: 16px;
   }
-  
-  
-  h1, h2, h3, h4, h5, h6, p {
-    @include clear;
+  @media screen and (max-width: $tableWidth) {
+    font-size: 15px;
   }
+  @media screen and (max-width: $phoneWidth) {
+    font-size: 14px;
+  }
+}
 
-  .wrapper {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    overflow: hidden;
-  }
-    
-  a {
-    text-decoration: none;
-  }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: $mainFontSize;
+  font-weight: $mainFontWeight;
+}
 
-  .view-port {
-    width: $view-port;
-    margin: 0 auto;
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul, li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+section, .section {
+  position: relative;
+  padding: 40px 0;
+  @media screen and (max-width: $smDesktopWidth) {
+    padding: 36px 0;
   }
+  @media screen and (max-width: $tableWidth) {
+    padding: 28px 0;
+  }
+  @media screen and (max-width: $phoneWidth) {
+    padding: 20px 0;
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  min-height: 100vh;
+  min-width: 100%;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  flex: 0 0 auto;
+  position: relative;
+  margin: 0 auto;
+  max-width: $desktopWidth;
+  @media screen and (max-width: $smDesktopWidth) {
+    max-width: $tableWidth;
+  }
+  @media screen and (max-width: $tableWidth) {
+    max-width: $phoneWidth;
+  }
+  @media screen and (max-width: $phoneWidth) {
+    max-width: $smPhoneWidth;
+  }
+}
+
+
+
+  // .view-port {
+  //   width: $view-port;
+  //   margin: 0 auto;
+  // }
   
+  // .inp-namw{
+  //   @include placeholder;
+  //   @include size(100%, 47px);
+  //   outline: 1px solid $neutral-secondary;
+  // }
+
   .hide {
     display: none !important;
   }
+
+  @import "./start.scss";
