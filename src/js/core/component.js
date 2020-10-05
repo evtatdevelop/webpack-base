@@ -6,11 +6,7 @@ export class Component {
 
     init() {}
 
-    hide() {
-        this.$element.classList.add('hide')
-    }
+    hide() { this.$element.classList.add('hide') }
 
-    show() {
-        this.$element.classList.remove('hide')
-    }
+    show() { this.$element.classList.remove('hide') }
 }
