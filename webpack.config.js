@@ -1,5 +1,6 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -20,7 +21,13 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: "style.css"
-    })
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: './src/img', to: 'img' },
+        { from: './src/static', to: '' },
+      ],
+    }),
   ],
   resolve: {
     extensions: ['.js']
@@ -35,6 +42,13 @@ module.exports = {
           options: {
             presets: ['@babel/preset-env']
           }
+        }
+      },
+      {
+        test: /\.(png|jpg|gif|svg)$/,
+        loader: 'file-loader',
+        options: {
+          name: 'img/[name].[ext]'
         }
       },
       {
